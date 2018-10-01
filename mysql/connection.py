@@ -30,7 +30,7 @@ def delFriend(fid):
     show()
 def update():
     oname = input("Enter Old Name: ")
-    nname = input("Enter Old Name: ")
+    nname = input("Enter New Name: ")
     ncity = input("Enter His/Her City: ")
     q = "UPDATE myfriends SET full_name = %s, city = %s WHERE full_name = %s"
     p = (nname, ncity, oname)
@@ -40,7 +40,7 @@ def update():
 def mainMenue():
     clear()
     print("******Main Menue******")
-    print("1- Add New Record\n2- Show Record\n3- Del a Friend\n4- Update Record")
+    print("1- Add New Record\n2- Show Record\n3- Del a Friend\n4- Update Friend's List")
     what = input("Enter Your Choice: ")
     if what == str('1'):
         AddNew()
