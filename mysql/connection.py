@@ -20,17 +20,40 @@ def show():
     q = "SELECT * FROM myfriends"
     handler.execute(q)
     res = handler.fetchall()
-    print(res)
+    for f in res:
+        print(f[1]+"------"+f[2])
+def delFriend(fid):
+    q = "DELETE FROM myfriends WHERE f_id = %s"
+    v = (fid,)
+    handler.execute(q,v)
+    mydb.commit()
+    show()
+def update():
+    oname = input("Enter Old Name: ")
+    nname = input("Enter Old Name: ")
+    ncity = input("Enter His/Her City: ")
+    q = "UPDATE myfriends SET full_name = %s, city = %s WHERE full_name = %s"
+    p = (nname, ncity, oname)
+    handler.execute(q,p)
+    mydb.commit()
+    show()
 def mainMenue():
     clear()
     print("******Main Menue******")
-    print("1- Add New Record\n2- Show Record")
+    print("1- Add New Record\n2- Show Record\n3- Del a Friend\n4- Update Record")
     what = input("Enter Your Choice: ")
     if what == str('1'):
         AddNew()
         mainMenue()
     elif what == str('2'):
         show()
+        mainMenue()
+    elif what == str('3'):
+        fid = input("Enter Friend's ID to Delete? ")
+        delFriend(fid)
+        mainMenue()
+    elif what == str('4'):
+        update()
         mainMenue()
     else:
         print("Invalid Option")
